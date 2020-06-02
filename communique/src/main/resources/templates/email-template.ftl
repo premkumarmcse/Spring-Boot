@@ -26,6 +26,8 @@
 							<div>
 							    <br>Communique is a microservice responsible for any communication from the application to subscribers of the application.
 								The service is responsible for delivering any communication via emails/sms.<br>
+								<br> Communique is a microservice responsible for any communication from the application to subscribers of the application.
+								The service is responsible for delivering any communication via emails/sms.<br> <br>
 								<br> <br> <b>${username}</b><br>${body}<br>
 								<br>
 							</div>
