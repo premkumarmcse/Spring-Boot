@@ -1,11 +1,15 @@
 package com.communique.repository;
 
+import java.util.Optional;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import com.communique.entity.UserDetails;
+import com.communique.entity.User;
 
-public interface EmailRepository extends JpaRepository<UserDetails, Long> {
+public interface UserRepository extends JpaRepository<User, Long> {
 
-	UserDetails findByUsername(String username);
+	Optional<User> findByUserName(String userName);
+
+//	Optional<User> findByUserName(String userName);
 
 }

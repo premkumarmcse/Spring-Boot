@@ -1,110 +1,55 @@
 package com.communique.entity;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 @Entity
-public class UserDetails {
+@Table(name = "User")
+public class User {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private long userId;
-	
-	@Column(name = "username")
-	private String username;
-	
-	@Column(name = "email_id")
-	private String emailId;
-	
-	@Column(name = "role")
-	private String role;
-	
-	@Column(name = "max_email_limit")
-	private long maxEmailLimit;
-	
-	@Column(name = "current_email_limit")
-	private long currentLimit;
-	
-	
-	
-	public long getUserId() {
-		return userId;
+	private long id;
+	private String userName;
+	private String password;
+	private Boolean active;
+	private String roles;
+	public long getId() {
+		return id;
 	}
-
-
-
-	public void setUserId(long userId) {
-		this.userId = userId;
+	public void setId(long id) {
+		this.id = id;
 	}
-
-
-
-	public String getUsername() {
-		return username;
+	public String getUserName() {
+		return userName;
 	}
-
-
-
-	public void setUsername(String username) {
-		this.username = username;
+	public void setUserName(String userName) {
+		this.userName = userName;
 	}
-
-
-
-	public String getEmailId() {
-		return emailId;
+	public String getPassword() {
+		return password;
 	}
-
-
-
-	public void setEmailId(String emailId) {
-		this.emailId = emailId;
+	public void setPassword(String password) {
+		this.password = password;
 	}
-
-
-
-	public String getRole() {
-		return role;
+	public Boolean getActive() {
+		return active;
 	}
-
-
-
-	public void setRole(String role) {
-		this.role = role;
+	public void setActive(Boolean active) {
+		this.active = active;
 	}
-
-
-
-	public long getMaxEmailLimit() {
-		return maxEmailLimit;
+	public String getRoles() {
+		return roles;
 	}
-
-
-
-	public void setMaxEmailLimit(long maxEmailLimit) {
-		this.maxEmailLimit = maxEmailLimit;
+	public void setRoles(String roles) {
+		this.roles = roles;
 	}
-
-
-
-	public long getCurrentLimit() {
-		return currentLimit;
-	}
-
-
-
-	public void setCurrentLimit(long currentLimit) {
-		this.currentLimit = currentLimit;
-	}
-
-
-
 	@Override
 	public String toString() {
-		return "UserDetails [userId=" + userId + ", username=" + username + ", emailId=" + emailId + ", role=" + role
-				+ ", maxEmailLimit=" + maxEmailLimit + ", currentLimit=" + currentLimit + "]";
+		return "User [id=" + id + ", userName=" + userName + ", password=" + password + ", active=" + active
+				+ ", roles=" + roles + "]";
 	}
 }

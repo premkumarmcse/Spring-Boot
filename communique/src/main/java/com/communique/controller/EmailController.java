@@ -1,6 +1,7 @@
 package com.communique.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -17,6 +18,12 @@ public class EmailController {
 	@Autowired
 	SendGridEmailService sendGridEmailService;
 	
+	@GetMapping("/get")
+	public String hello() {
+		return ("<h1>Static home page...</h1>");
+		
+	}
+	
 	@PostMapping(value="/sendEmail")
 	public void sendEmail(@RequestBody EmailRequest emailRequest) {
 		sendGridEmailService.sendHTML(emailRequest.getUsername(), emailRequest.getFromAddress(), emailRequest.getToAddress(), emailRequest.getSubject(), emailRequest.getContent());
@@ -24,11 +31,11 @@ public class EmailController {
 	
 	@PostMapping(value="/sendBulkEmail")
 	public Response sendBulkEmail(@RequestBody EmailRequest emailRequest) {
-		return sendGridEmailService.sendBulkEmail(emailRequest.getFromAddress(), emailRequest.getToAddress(), emailRequest.getSubject(), emailRequest.getContent());
+		return sendGridEmailService.sendBulkEmail(emailRequest.getUsername(), emailRequest.getFromAddress(), emailRequest.getToAddress(), emailRequest.getSubject(), emailRequest.getContent());
 	}
 	
 	@PutMapping(value="/updateEmailLimits")
-	public String updateEmailLimits(@RequestParam String user) {
-		return "";
+	public String updateEmailLimits(@RequestParam String username, long newMaxLimit) {
+		return sendGridEmailService.updateEmailLimits(username, newMaxLimit);
 	}
 }
