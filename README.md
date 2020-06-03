@@ -17,6 +17,12 @@ Communique is a microservice responsible for any communication from the applicat
 
 ## Usage
 
+### Swagger UI
+
+```
+http://localhost:8080/swagger-ui.html#/
+```
+
 ### Send Email API
 
 > Use of this API is to send an email to single recipient
@@ -49,10 +55,3 @@ i.e. "abc@gmail.com;ngk@gmail.com;grg@gmail.com"
 userName: Admin username
 newMaxLimit: The new max email limits
 ```
-
-## Credits
-
-> Author
-
-| <a href="https://github.com/aldrineeinsteen" target="_blank">**Aldrine Einsteen**</a> |
-| :---: |
