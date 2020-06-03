@@ -11,6 +11,32 @@ Communique is a microservice responsible for any communication from the applicat
 - Swagger2
 - SendGrid Email API
 
+**Dependencies Used**
+
+> Swagger2
+
+```
+        <dependency>
+            <groupId>io.springfox</groupId>
+            <artifactId>springfox-swagger2</artifactId>
+            <version>2.9.2</version>
+        </dependency>
+        <dependency>
+            <groupId>io.springfox</groupId>
+            <artifactId>springfox-swagger-ui</artifactId>
+            <version>2.9.2</version>
+        </dependency>
+```
+
+> SendGrid
+
+```
+        <dependency>
+            <groupId>com.sendgrid</groupId>
+            <artifactId>sendgrid-java</artifactId>
+        </dependency>
+```
+
 ## Clone
 
 - Clone this repo to your local machine using `https://github.com/premkumarmcse/Spring-Boot.git`
