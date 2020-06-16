@@ -61,11 +61,15 @@ public class RequestResponseLoggingFilter implements Filter {
 			user.orElseThrow(() -> new UsernameNotFoundException("Not found : " + currentPrincipalName));
 			UserRole userRole = userRoleRepo.findByUserId(user.get().getId());
 			List<Long> roleResource = new ArrayList<Long>();
+
 			roleResource = rolesResourceRepo.getListOfRoleResource(userRole.getRoleId(), true);
 
 			List<Resource> resourceList = new ArrayList<Resource>();
 			resourceList = resourceRepo.getListOfResourceUrl(roleResource);
 
+			if (resourceList.size() == 0) {
+				((HttpServletResponse) response).sendError(HttpStatus.NOT_FOUND.value(), "Invalid path");
+			}
 			for (int i = 0; i < resourceList.size(); i++) {
 				if (!resourceList.get(i).getAction().equals(req.getMethod())
 						|| !resourceList.get(i).getUrl().equals(req.getRequestURI())) {
