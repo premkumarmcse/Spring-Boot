@@ -27,7 +27,7 @@ public class UserService {
 
 	public UserDto getUser(long id) {
 		User user = userServiceRepo.getById(id);
-		if(user != null) {
+		if (user != null) {
 			UserDto userDto = new UserDto(user);
 			return userDto;
 		}

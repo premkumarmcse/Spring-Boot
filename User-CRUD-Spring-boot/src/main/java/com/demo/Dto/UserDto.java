@@ -1,5 +1,7 @@
 package com.demo.Dto;
 
+import java.util.Optional;
+
 import com.demo.entity.User;
 
 public class UserDto {
@@ -9,6 +11,7 @@ public class UserDto {
 	private String firstName;
 	private String lastName;
 	private String email;
+	private String role;
 
 	public UserDto() {
 
@@ -20,7 +23,16 @@ public class UserDto {
 		this.password = user.getPassword();
 		this.firstName = user.getFirstName();
 		this.lastName = user.getLastName();
-		this.email = user.getLastName();
+		this.email = user.getEmail();
+	}
+
+	public UserDto(Optional<UserDto> user) {
+		this.id = user.get().getId();
+		this.username = user.get().getUsername();
+		this.password = user.get().getPassword();
+		this.firstName = user.get().getFirstName();
+		this.lastName = user.get().getLastName();
+		this.email = user.get().getEmail();
 	}
 
 	public long getId() {
@@ -69,6 +81,14 @@ public class UserDto {
 
 	public void setEmail(String email) {
 		this.email = email;
+	}
+
+	public String getRole() {
+		return role;
+	}
+
+	public void setRole(String role) {
+		this.role = role;
 	}
 
 	@Override

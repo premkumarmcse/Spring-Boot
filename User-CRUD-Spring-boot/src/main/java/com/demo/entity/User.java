@@ -30,7 +30,7 @@ public class User {
 		this.password = userDto.getPassword();
 		this.firstName = userDto.getFirstName();
 		this.lastName = userDto.getLastName();
-		this.email = userDto.getLastName();
+		this.email = userDto.getEmail();
 	}
 
 	public long getId() {
