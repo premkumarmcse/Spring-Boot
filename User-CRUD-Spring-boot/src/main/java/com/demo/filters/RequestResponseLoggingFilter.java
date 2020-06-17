@@ -77,12 +77,15 @@ public class RequestResponseLoggingFilter implements Filter {
 						((HttpServletResponse) response).sendError(HttpStatus.BAD_REQUEST.value(), "Invalid path");
 					}
 				} else {
+					chain.doFilter(request, response);
 					break;
 				}
 			}
 
 			System.out.println(resourceList);
+		} else {
+			chain.doFilter(request, response);
 		}
-		chain.doFilter(request, response);
+
 	}
 }

@@ -4,10 +4,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import com.demo.Dto.UserDto;
 import com.demo.entity.User;
+import com.demo.exception.ResourceNotFoundException;
 import com.demo.repository.UserServiceRepo;
 
 @Service
@@ -25,13 +27,11 @@ public class UserService {
 		return userDtoList;
 	}
 
-	public UserDto getUser(long id) {
-		User user = userServiceRepo.getById(id);
-		if (user != null) {
-			UserDto userDto = new UserDto(user);
-			return userDto;
-		}
-		return null;
+	public ResponseEntity<UserDto> getUser(long id) throws ResourceNotFoundException {
+		User user = userServiceRepo.findById(id)
+				.orElseThrow(() -> new ResourceNotFoundException("User not found for this id :: " + id));
+		UserDto userDto = new UserDto(user);
+		return ResponseEntity.ok().body(userDto);
 	}
 
 	public void addUser(UserDto userDto) {
@@ -44,8 +44,11 @@ public class UserService {
 		userServiceRepo.save(user);
 	}
 
-	public void deleteUser(long id) {
+	public ResponseEntity<User> deleteUser(long id) throws ResourceNotFoundException {
+		User entity = userServiceRepo.findById(id)
+				.orElseThrow(() -> new ResourceNotFoundException("User not found for this id :: " + id));
 		userServiceRepo.deleteById(id);
+		return ResponseEntity.ok(entity);
 	}
 
 }
