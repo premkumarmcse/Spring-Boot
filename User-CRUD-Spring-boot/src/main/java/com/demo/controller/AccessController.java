@@ -36,12 +36,12 @@ public class AccessController {
 		accessService.addResource(resourceDto);
 	}
 
-	@PostMapping("/access/roleResource")
+	@PostMapping("/access/roleofresource")
 	public void assignResourceToRole(@RequestBody RoleResourceDto roleResourceDto) {
 		accessService.assignResourceToRole(roleResourceDto);
 	}
 
-	@PostMapping("/access/userRole")
+	@PostMapping("/access/userrole")
 	public void assignRoleToUser(@RequestBody UserRoleDto userRoleDto) {
 		accessService.assignRoleToUser(userRoleDto);
 	}
