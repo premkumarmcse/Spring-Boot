@@ -1,12 +1,14 @@
 package com.demo.Dto;
 
+import com.demo.entity.Role;
 import com.demo.entity.RoleResource;
 
 public class RoleResourceDto {
 	private long id;
-	private long roleId;
-	private long resourceId;
-	private boolean active;	
+//	private String roleName;
+	private String resourceName;
+	private boolean active;
+	Role role;
 
 	public RoleResourceDto() {
 
@@ -14,8 +16,8 @@ public class RoleResourceDto {
 
 	public RoleResourceDto(RoleResource roleResource) {
 		this.id = roleResource.getId();
-		this.roleId = roleResource.getRoleId();
-		this.resourceId = roleResource.getResourceId();
+//		this.roleName = roleResource.getRoleName();
+		this.resourceName = roleResource.getResourceName();
 		this.active = roleResource.isActive();
 	}
 
@@ -27,33 +29,39 @@ public class RoleResourceDto {
 		this.id = id;
 	}
 
-	public long getRoleId() {
-		return roleId;
+	/*
+	 * public String getRoleName() { return roleName; }
+	 * 
+	 * public void setRoleName(String roleName) { this.roleName = roleName; }
+	 */
+
+	public String getResourceName() {
+		return resourceName;
 	}
 
-	public void setRoleId(long roleId) {
-		this.roleId = roleId;
-	}
-
-	public long getResourceId() {
-		return resourceId;
-	}
-
-	public void setResourceId(long resourceId) {
-		this.resourceId = resourceId;
+	public void setResourceName(String resourceName) {
+		this.resourceName = resourceName;
 	}
 
 	public boolean isActive() {
 		return active;
 	}
 
-	public void setActive(boolean grant) {
-		this.active = grant;
+	public void setActive(boolean active) {
+		this.active = active;
+	}
+
+	public Role getRole() {
+		return role;
+	}
+
+	public void setRole(Role role) {
+		this.role = role;
 	}
 
 	@Override
 	public String toString() {
-		return "RoleResource [id=" + id + ", roleId=" + roleId + ", resourceId=" + resourceId + ", active=" + active
+		return "RoleResourceDto [id=" + id + ", resourceName=" + resourceName + ", active=" + active + ", role=" + role
 				+ "]";
 	}
 }

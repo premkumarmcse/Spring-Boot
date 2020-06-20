@@ -1,12 +1,18 @@
 package com.demo.entity;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import com.demo.Dto.UserDto;
+import com.sun.istack.NotNull;
 
 @Entity
 @Table(name = "users")
@@ -14,11 +20,17 @@ public class User {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
+	@NotNull
 	private String username;
+	@NotNull
 	private String password;
+	@NotNull
 	private String firstName;
 	private String lastName;
 	private String email;
+
+	@OneToMany(mappedBy = "user", cascade = { CascadeType.ALL }, orphanRemoval = true)
+	List<UserRole> userRole = new ArrayList<UserRole>();
 
 	public User() {
 
@@ -79,6 +91,14 @@ public class User {
 
 	public void setEmail(String email) {
 		this.email = email;
+	}
+
+	public List<UserRole> getUserRole() {
+		return userRole;
+	}
+
+	public void setUserRole(List<UserRole> userRole) {
+		this.userRole = userRole;
 	}
 
 	@Override

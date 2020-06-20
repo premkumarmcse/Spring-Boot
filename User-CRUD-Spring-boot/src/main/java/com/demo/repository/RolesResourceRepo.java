@@ -10,7 +10,7 @@ import com.demo.entity.RoleResource;
 
 public interface RolesResourceRepo extends JpaRepository<RoleResource, Long>{
 
-	@Query("select u.resourceId from RoleResource u where u.roleId = :roleId and u.active = :active")
-	List<Long> getListOfRoleResource(@Param("roleId") long roleId, @Param("active") boolean active);
+	@Query("select u.resourceName from RoleResource u where u.role.roleName = :roleName and u.active = :active")
+	List<String> getListOfRoleResource(@Param("roleName") String roleName, @Param("active") boolean active);
 
 }

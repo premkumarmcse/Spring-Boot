@@ -9,10 +9,8 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import com.demo.Dto.UserDto;
-import com.demo.entity.Role;
 import com.demo.entity.UserRole;
 import com.demo.models.MyUserDetails;
-import com.demo.repository.RolesRepo;
 import com.demo.repository.UserRoleRepo;
 import com.demo.repository.UserServiceRepo;
 
@@ -25,16 +23,16 @@ public class MyUserDetailsService implements UserDetailsService {
 	@Autowired
 	private UserRoleRepo userRoleRepo;
 
-	@Autowired
-	private RolesRepo rolesRepo;
+//	@Autowired
+//	private RolesRepo rolesRepo;
 
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 		Optional<UserDto> user = userRepository.findByUsername(username);
 		user.orElseThrow(() -> new UsernameNotFoundException("Not found : " + username));
 		UserRole userRole = userRoleRepo.findByUserId(user.get().getId());
-		Role role = rolesRepo.findById(userRole.getRoleId());
-		user.get().setRole(role.getRoleName());
+//		Role role = rolesRepo.findById(userRole.getRoleName());
+		user.get().setRole(userRole.getRoleName());
 		return user.map(MyUserDetails::new).get();
 
 	}

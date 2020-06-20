@@ -1,6 +1,9 @@
 package com.demo.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
@@ -48,7 +51,8 @@ public class AccessService {
 	@Autowired
 	private UserRoleRepo userRoleRepo;
 
-	public ResponseEntity<AuthenticationResponse> createAuthenticationToken(AuthenticationRequest authenticationRequest) throws Exception {
+	public ResponseEntity<AuthenticationResponse> createAuthenticationToken(AuthenticationRequest authenticationRequest)
+			throws Exception {
 		try {
 			authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(
 					authenticationRequest.getUsername(), authenticationRequest.getPassword()));
@@ -66,15 +70,25 @@ public class AccessService {
 		rolesRepo.save(role);
 	}
 
-	public void addResource(ResourceDto resourceDto) {
-		Resource resource = new Resource(resourceDto);
-		resourceRepo.save(resource);
+	public void addResource(List<ResourceDto> resourceDto) {
+		for (ResourceDto resource : resourceDto) {
+			Resource resourceEntity = new Resource(resource);
+			resourceRepo.save(resourceEntity);
+		}
+
 	}
 
-	public void assignResourceToRole(RoleResourceDto roleResourceDto) {
-		RoleResource roleResource = new RoleResource(roleResourceDto);
-		roleResource.setActive(true);
-		rolesResourceRepo.save(roleResource);
+	public String assignResourceToRole(RoleResourceDto roleResourceDto) {
+		try {
+			RoleResource roleResource = new RoleResource(roleResourceDto);
+			roleResource.setActive(true);
+			rolesResourceRepo.save(roleResource);
+		}catch (DataIntegrityViolationException divEX) {
+			if(divEX.getMostSpecificCause().toString().toUpperCase().contains("UK_ROLEID_RESOURCEID")){
+					return "Resource Id and Role Id Unique";
+			}
+		}
+		return "Resource successfully assigned to the Roles";
 	}
 
 	public void assignRoleToUser(UserRoleDto userRoleDto) {

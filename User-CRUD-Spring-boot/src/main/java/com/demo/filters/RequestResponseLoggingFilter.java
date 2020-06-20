@@ -2,7 +2,10 @@ package com.demo.filters;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Enumeration;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 import javax.servlet.Filter;
@@ -27,6 +30,8 @@ import com.demo.repository.ResourceRepo;
 import com.demo.repository.RolesResourceRepo;
 import com.demo.repository.UserRoleRepo;
 import com.demo.repository.UserServiceRepo;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 @Component
 public class RequestResponseLoggingFilter implements Filter {
@@ -43,34 +48,60 @@ public class RequestResponseLoggingFilter implements Filter {
 	@Autowired
 	private ResourceRepo resourceRepo;
 
+	Logger logger = LoggerFactory.getLogger(RequestResponseLoggingFilter.class);
+
 	@Override
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
 			throws IOException, ServletException {
 		HttpServletRequest req = (HttpServletRequest) request;
 		HttpServletResponse res = (HttpServletResponse) response;
 
+		String requestParameter = null;
+
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 		String currentPrincipalName = authentication.getName();
 
-		System.out.println("Logging Request: " + req.getMethod() + "-" + req.getRequestURI());
-		System.out.println("Logging Response: " + res.getContentType());
-		System.out.println(currentPrincipalName);
+		logger.info("Logging Request: " + req.getMethod() + "-" + req.getRequestURI());
+		logger.info("Logging Response: " + res.getContentType());
+		logger.info(currentPrincipalName);
+
+		Enumeration<String> enumeration = request.getParameterNames();
+		Map<String, Object> modelMap = new HashMap<>();
+		while (enumeration.hasMoreElements()) {
+			String parameterName = enumeration.nextElement();
+			modelMap.put(parameterName, request.getParameter(parameterName));
+		}
+
+		for (String key : modelMap.keySet()) {
+			logger.info(" Key : " + key);
+			logger.info(" Value : " + (String) modelMap.get(key));
+			requestParameter = (String) key;
+			logger.info("Initial Value : " + requestParameter);
+		}
 
 		if (!SecurityContextHolder.getContext().getAuthentication().getPrincipal().equals("anonymousUser")) {
 			Optional<UserDto> user = userRepository.findByUsername(currentPrincipalName);
 			user.orElseThrow(() -> new UsernameNotFoundException("Not found : " + currentPrincipalName));
 			UserRole userRole = userRoleRepo.findByUserId(user.get().getId());
-			List<Long> roleResource = new ArrayList<Long>();
+			List<String> roleResource = new ArrayList<String>();
 
-			roleResource = rolesResourceRepo.getListOfRoleResource(userRole.getRoleId(), true);
+			roleResource = rolesResourceRepo.getListOfRoleResource(userRole.getRoleName(), true);
 
 			List<Resource> resourceList = new ArrayList<Resource>();
 			resourceList = resourceRepo.getListOfResourceUrl(roleResource);
 
 			if (resourceList.size() == 0) {
-				((HttpServletResponse) response).sendError(HttpStatus.NOT_FOUND.value(), "Invalid path");
+				((HttpServletResponse) response).sendError(HttpStatus.BAD_REQUEST.value(), "Invalid path");
 			}
 			for (int i = 0; i < resourceList.size(); i++) {
+				if (requestParameter != null
+						&& (req.getMethod().contains("GET") || req.getMethod().contains("DELETE"))) {
+					requestParameter = req.getRequestURI() + "{" + requestParameter + "}";
+					if (requestParameter.equals(resourceList.get(i).getUrl())) {
+						logger.info("Updated Value : " + requestParameter);
+						break;
+					}
+				}
 				if (!resourceList.get(i).getAction().equals(req.getMethod())
 						|| !resourceList.get(i).getUrl().equals(req.getRequestURI())) {
 					if (i == resourceList.size() - 1) {

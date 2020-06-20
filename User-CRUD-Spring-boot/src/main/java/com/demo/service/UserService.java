@@ -20,6 +20,7 @@ public class UserService {
 
 	public List<UserDto> getAllUsers() {
 		List<User> usersList = userServiceRepo.findAll();
+		System.out.println("Data : " + usersList);
 		List<UserDto> userDtoList = new ArrayList<UserDto>();
 		for (User user : usersList) {
 			userDtoList.add(new UserDto(user));

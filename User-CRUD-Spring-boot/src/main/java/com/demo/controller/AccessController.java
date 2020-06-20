@@ -1,5 +1,7 @@
 package com.demo.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -32,13 +34,13 @@ public class AccessController {
 	}
 
 	@PostMapping("/access/resource")
-	public void addResource(@RequestBody ResourceDto resourceDto) {
+	public void addResource(@RequestBody List<ResourceDto> resourceDto) {
 		accessService.addResource(resourceDto);
 	}
 
 	@PostMapping("/access/roleofresource")
-	public void assignResourceToRole(@RequestBody RoleResourceDto roleResourceDto) {
-		accessService.assignResourceToRole(roleResourceDto);
+	public String assignResourceToRole(@RequestBody RoleResourceDto roleResourceDto) {
+		return accessService.assignResourceToRole(roleResourceDto);
 	}
 
 	@PostMapping("/access/userrole")

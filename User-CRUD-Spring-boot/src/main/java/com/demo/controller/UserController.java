@@ -28,7 +28,7 @@ public class UserController {
 		return userService.getAllUsers();
 	}
 
-	@GetMapping("/users/getById/{id}")
+	@GetMapping("/users/{id}")
 	public ResponseEntity<UserDto> getUser(@PathVariable long id) throws ResourceNotFoundException {
 		return userService.getUser(id);
 	}
@@ -43,7 +43,7 @@ public class UserController {
 		userService.updateUser(userDto);
 	}
 
-	@DeleteMapping("/users/deleteById/{id}")
+	@DeleteMapping("/users/{id}")
 	public ResponseEntity<User> deleteUser(@PathVariable long id) throws ResourceNotFoundException {
 		return userService.deleteUser(id);
 	}

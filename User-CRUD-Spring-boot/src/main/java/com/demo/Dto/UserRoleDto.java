@@ -1,20 +1,22 @@
 package com.demo.Dto;
 
+import com.demo.entity.User;
 import com.demo.entity.UserRole;
 
 public class UserRoleDto {
 	private long id;
-	private long userId;
-	private long roleId;
+	private String roleName;
+	User user;
+
 	public UserRoleDto() {
 
 	}
 
 	public UserRoleDto(UserRole userRole) {
 		this.id = userRole.getId();
-		this.userId = userRole.getUserId();
-		this.roleId = userRole.getRoleId();
+		this.roleName = userRole.getRoleName();
 	}
+
 	public long getId() {
 		return id;
 	}
@@ -23,24 +25,16 @@ public class UserRoleDto {
 		this.id = id;
 	}
 
-	public long getUserId() {
-		return userId;
+	public String getRoleName() {
+		return roleName;
 	}
 
-	public void setUserId(long userId) {
-		this.userId = userId;
-	}
-
-	public long getRoleId() {
-		return roleId;
-	}
-
-	public void setRoleId(long roleId) {
-		this.roleId = roleId;
+	public void setRoleName(String roleName) {
+		this.roleName = roleName;
 	}
 
 	@Override
 	public String toString() {
-		return "UserRole [id=" + id + ", userId=" + userId + ", roleId=" + roleId + "]";
+		return "UserRole [id=" + id + ", roleName=" + roleName + ", user=" + user + "]";
 	}
 }
