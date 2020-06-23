@@ -7,37 +7,37 @@ import org.junit.jupiter.api.Test;
 
 class ResourceTest {
 
-	Resource resource = new Resource();
+	Resource rsrc = new Resource();
 
 	@Test
 	public void testResourceInstanceInitialized() {
-		assertNotNull(resource);
+		assertNotNull(rsrc);
 	}
 
 	@Test
 	public void testResourceFieldsNotEmpty() {
-		resource.setId(1);
-		resource.setResourceName("getUser");
-		resource.setAction("GET");
-		resource.setUrl("/users/");
+		rsrc.setId(1);
+		rsrc.setRsrcNm("getUser");
+		rsrc.setActn("GET");
+		rsrc.setUrl("/users/");
 
-		assertNotEquals("", resource.getId());
-		assertNotEquals("", resource.getResourceName());
-		assertNotEquals("", resource.getAction());
-		assertNotEquals("", resource.getUrl());
+		assertNotEquals("", rsrc.getId());
+		assertNotEquals("", rsrc.getRsrcNm());
+		assertNotEquals("", rsrc.getActn());
+		assertNotEquals("", rsrc.getUrl());
 	}
 
 	@Test
 	public void testResourceFieldsNotNull() {
-		resource.setId(1);
-		resource.setResourceName("");
-		resource.setAction("");
-		resource.setUrl("");
+		rsrc.setId(1);
+		rsrc.setRsrcNm("");
+		rsrc.setActn("");
+		rsrc.setUrl("");
 
-		assertNotNull(resource.getId());
-		assertNotNull(resource.getResourceName());
-		assertNotNull(resource.getAction());
-		assertNotNull(resource.getUrl());
+		assertNotNull(rsrc.getId());
+		assertNotNull(rsrc.getRsrcNm());
+		assertNotNull(rsrc.getActn());
+		assertNotNull(rsrc.getUrl());
 	}
 
 }

@@ -8,9 +8,9 @@ import org.springframework.data.repository.query.Param;
 
 import com.demo.entity.RoleResource;
 
-public interface RolesResourceRepo extends JpaRepository<RoleResource, Long>{
+public interface RolesResourceRepo extends JpaRepository<RoleResource, Long> {
 
-	@Query("select u.resourceName from RoleResource u where u.role.roleName = :roleName and u.active = :active")
-	List<String> getListOfRoleResource(@Param("roleName") String roleName, @Param("active") boolean active);
+	@Query("select u.rsrcNm from RoleResource u where u.role.roleNm = :roleNm and u.actv = :actv")
+	List<String> getListOfRoleResource(@Param("roleNm") String roleName, @Param("actv") boolean actv);
 
 }

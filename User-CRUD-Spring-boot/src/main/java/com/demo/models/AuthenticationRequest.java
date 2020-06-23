@@ -1,31 +1,31 @@
 package com.demo.models;
 
 public class AuthenticationRequest {
-	private String username;
-	private String password;
+	private String usrNm;
+	private String pwd;
 
-	public String getUsername() {
-		return username;
+	public String getUsrNm() {
+		return usrNm;
 	}
 
-	public void setUsername(String username) {
-		this.username = username;
+	public void setUsrNm(String usrNm) {
+		this.usrNm = usrNm;
 	}
 
-	public String getPassword() {
-		return password;
+	public String getPwd() {
+		return pwd;
 	}
 
-	public void setPassword(String password) {
-		this.password = password;
+	public void setPwd(String pwd) {
+		this.pwd = pwd;
 	}
 
 	public AuthenticationRequest() {
 
 	}
 
-	public AuthenticationRequest(String username, String password) {
-		this.setUsername(username);
-		this.setPassword(password);
+	public AuthenticationRequest(String usrNm, String pwd) {
+		this.setUsrNm(usrNm);
+		this.setPwd(pwd);
 	}
 }

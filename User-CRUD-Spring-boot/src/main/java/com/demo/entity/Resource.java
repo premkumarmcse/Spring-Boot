@@ -14,9 +14,9 @@ public class Resource {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 	@NotNull
-	private String resourceName;
+	private String rsrcNm;
 	@NotNull
-	private String action;
+	private String actn;
 	@NotNull
 	private String url;
 
@@ -24,11 +24,11 @@ public class Resource {
 
 	}
 
-	public Resource(ResourceDto resourceDto) {
-		this.id = resourceDto.getId();
-		this.resourceName = resourceDto.getResourceName();
-		this.action = resourceDto.getAction();
-		this.url = resourceDto.getUrl();
+	public Resource(ResourceDto rsrcDto) {
+		this.id = rsrcDto.getId();
+		this.rsrcNm = rsrcDto.getRsrcNm();
+		this.actn = rsrcDto.getActn();
+		this.url = rsrcDto.getUrl();
 	}
 
 	public long getId() {
@@ -39,20 +39,20 @@ public class Resource {
 		this.id = id;
 	}
 
-	public String getResourceName() {
-		return resourceName;
+	public String getRsrcNm() {
+		return rsrcNm;
 	}
 
-	public void setResourceName(String resourceName) {
-		this.resourceName = resourceName;
+	public void setRsrcNm(String rsrcNm) {
+		this.rsrcNm = rsrcNm;
 	}
 
-	public String getAction() {
-		return action;
+	public String getActn() {
+		return actn;
 	}
 
-	public void setAction(String action) {
-		this.action = action;
+	public void setActn(String actn) {
+		this.actn = actn;
 	}
 
 	public String getUrl() {
@@ -65,7 +65,7 @@ public class Resource {
 
 	@Override
 	public String toString() {
-		return "Resource [id=" + id + ", resourceName=" + resourceName + ", action=" + action + ", url=" + url + "]";
+		return "Resource [id=" + id + ", rsrcNm=" + rsrcNm + ", actn=" + actn + ", url=" + url + "]";
 	}
 
 }

@@ -15,28 +15,28 @@ import com.sun.istack.NotNull;
 
 @Entity
 @Table(name = "role_resource", uniqueConstraints = {
-		@UniqueConstraint(name = "UK_ROLEID_RESOURCEID", columnNames = { "roleName", "resourceName" }) })
+		@UniqueConstraint(name = "UK_ROLEID_RESOURCEID", columnNames = { "roleNm", "rsrcNm" }) })
 public class RoleResource {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 
 	@NotNull
-	private String resourceName;
-	private boolean active;
+	private String rsrcNm;
+	private boolean actv;
 
 	@ManyToOne
-	@JoinColumn(name = "roleName", referencedColumnName = "roleName", foreignKey = @ForeignKey(name = "FK_ROLE_NAME"))
+	@JoinColumn(name = "roleNm", referencedColumnName = "roleNm", foreignKey = @ForeignKey(name = "FK_ROLE_NAME"))
 	Role role;
 
 	public RoleResource() {
 
 	}
 
-	public RoleResource(RoleResourceDto roleResourceDto) {
-		this.id = roleResourceDto.getId();
-		this.resourceName = roleResourceDto.getResourceName();
-		this.active = roleResourceDto.isActive();
+	public RoleResource(RoleResourceDto roleRsrcDto) {
+		this.id = roleRsrcDto.getId();
+		this.rsrcNm = roleRsrcDto.getRsrcNm();
+		this.actv = roleRsrcDto.isActv();
 	}
 
 	public long getId() {
@@ -47,20 +47,20 @@ public class RoleResource {
 		this.id = id;
 	}
 
-	public String getResourceName() {
-		return resourceName;
+	public String getRsrcNm() {
+		return rsrcNm;
 	}
 
-	public void setResourceName(String resourceName) {
-		this.resourceName = resourceName;
+	public void setRsrcNm(String rsrcNm) {
+		this.rsrcNm = rsrcNm;
 	}
 
-	public boolean isActive() {
-		return active;
+	public boolean isActv() {
+		return actv;
 	}
 
-	public void setActive(boolean active) {
-		this.active = active;
+	public void setActv(boolean actv) {
+		this.actv = actv;
 	}
 
 	public Role getRole() {
@@ -73,7 +73,7 @@ public class RoleResource {
 
 	@Override
 	public String toString() {
-		return "RoleResource [id=" + id + ", resourceName=" + resourceName + ", active=" + active + ", role=" + role
+		return "RoleResource [id=" + id + ", rsrcNm=" + rsrcNm + ", actv=" + actv + ", role=" + role
 				+ "]";
 	}
 

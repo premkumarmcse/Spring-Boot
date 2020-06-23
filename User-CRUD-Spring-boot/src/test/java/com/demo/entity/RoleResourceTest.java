@@ -7,37 +7,33 @@ import org.junit.jupiter.api.Test;
 
 class RoleResourceTest {
 
-	RoleResource roleResource = new RoleResource();
+	RoleResource roleRsrc = new RoleResource();
 
 	@Test
 	public void testRoleResourceInstanceInitialized() {
-		assertNotNull(roleResource);
+		assertNotNull(roleRsrc);
 	}
 
 	@Test
 	public void testResourceFieldsNotEmpty() {
-		roleResource.setId(1);
-//		roleResource.setRoleName("ADNIN");
-		roleResource.setResourceName("getUser");
-		roleResource.setActive(true);
+		roleRsrc.setId(1);
+		roleRsrc.setRsrcNm("getUser");
+		roleRsrc.setActv(true);
 
-		assertNotEquals("", roleResource.getId());
-//		assertNotEquals("", roleResource.getRoleName());
-		assertNotEquals("", roleResource.getResourceName());
-		assertNotEquals("", roleResource.isActive());
+		assertNotEquals("", roleRsrc.getId());
+		assertNotEquals("", roleRsrc.getRsrcNm());
+		assertNotEquals("", roleRsrc.isActv());
 	}
 
 	@Test
 	public void testResourceFieldsNotNull() {
-		roleResource.setId(1);
-//		roleResource.setRoleName("ADNIN");
-		roleResource.setResourceName("getUser");
-		roleResource.setActive(true);
+		roleRsrc.setId(1);
+		roleRsrc.setRsrcNm("getUser");
+		roleRsrc.setActv(true);
 
-		assertNotNull(roleResource.getId());
-//		assertNotNull(roleResource.getRoleName());
-		assertNotNull(roleResource.getResourceName());
-		assertNotNull(roleResource.isActive());
+		assertNotNull(roleRsrc.getId());
+		assertNotNull(roleRsrc.getRsrcNm());
+		assertNotNull(roleRsrc.isActv());
 	}
 
 }

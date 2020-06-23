@@ -5,19 +5,19 @@ import com.demo.entity.Resource;
 public class ResourceDto {
 
 	private long id;
-	private String resourceName;
-	private String action;
+	private String rsrcNm;
+	private String actn;
 	private String url;
 
 	public ResourceDto() {
 
 	}
 
-	public ResourceDto(Resource resource) {
-		this.id = resource.getId();
-		this.action = resource.getAction();
-		this.url = resource.getUrl();
-		this.resourceName = resource.getResourceName();
+	public ResourceDto(Resource rsrc) {
+		this.id = rsrc.getId();
+		this.actn = rsrc.getActn();
+		this.url = rsrc.getUrl();
+		this.rsrcNm = rsrc.getRsrcNm();
 	}
 
 	public long getId() {
@@ -28,20 +28,20 @@ public class ResourceDto {
 		this.id = id;
 	}
 
-	public String getResourceName() {
-		return resourceName;
+	public String getRsrcNm() {
+		return rsrcNm;
 	}
 
-	public void setResourceName(String resourceName) {
-		this.resourceName = resourceName;
+	public void setRsrcNm(String rsrcNm) {
+		this.rsrcNm = rsrcNm;
 	}
 
-	public String getAction() {
-		return action;
+	public String getActn() {
+		return actn;
 	}
 
-	public void setAction(String action) {
-		this.action = action;
+	public void setActn(String actn) {
+		this.actn = actn;
 	}
 
 	public String getUrl() {
@@ -54,7 +54,7 @@ public class ResourceDto {
 
 	@Override
 	public String toString() {
-		return "Resource [id=" + id + ", resourceName=" + resourceName + ", action=" + action + ", url=" + url + "]";
+		return "Resource [id=" + id + ", rsrcNm=" + rsrcNm + ", action=" + actn + ", url=" + url + "]";
 	}
 
 }

@@ -6,10 +6,10 @@ import com.demo.entity.User;
 
 public class UserDto {
 	private long id;
-	private String username;
-	private String password;
-	private String firstName;
-	private String lastName;
+	private String usrNm;
+	private String pwd;
+	private String frstNm;
+	private String lstNm;
 	private String email;
 	private String role;
 
@@ -19,19 +19,19 @@ public class UserDto {
 
 	public UserDto(User user) {
 		this.id = user.getId();
-		this.username = user.getUsername();
-		this.password = user.getPassword();
-		this.firstName = user.getFirstName();
-		this.lastName = user.getLastName();
+		this.usrNm = user.getUsrNm();
+		this.pwd = user.getPwd();
+		this.frstNm = user.getFrstNm();
+		this.lstNm = user.getLstNm();
 		this.email = user.getEmail();
 	}
 
 	public UserDto(Optional<UserDto> user) {
 		this.id = user.get().getId();
-		this.username = user.get().getUsername();
-		this.password = user.get().getPassword();
-		this.firstName = user.get().getFirstName();
-		this.lastName = user.get().getLastName();
+		this.usrNm = user.get().getUsrNm();
+		this.pwd = user.get().getPwd();
+		this.frstNm = user.get().getFrstNm();
+		this.lstNm = user.get().getLstNm();
 		this.email = user.get().getEmail();
 	}
 
@@ -43,36 +43,36 @@ public class UserDto {
 		this.id = id;
 	}
 
-	public String getUsername() {
-		return username;
+	public String getUsrNm() {
+		return usrNm;
 	}
 
-	public void setUsername(String username) {
-		this.username = username;
+	public void setUsrNm(String username) {
+		this.usrNm = username;
 	}
 
-	public String getPassword() {
-		return password;
+	public String getPwd() {
+		return pwd;
 	}
 
-	public void setPassword(String password) {
-		this.password = password;
+	public void setPwd(String pwd) {
+		this.pwd = pwd;
 	}
 
-	public String getFirstName() {
-		return firstName;
+	public String getFrstNm() {
+		return frstNm;
 	}
 
-	public void setFirstName(String firstName) {
-		this.firstName = firstName;
+	public void setFrstNm(String frstNm) {
+		this.frstNm = frstNm;
 	}
 
-	public String getLastName() {
-		return lastName;
+	public String getLstNm() {
+		return lstNm;
 	}
 
-	public void setLastName(String lastName) {
-		this.lastName = lastName;
+	public void setLstNm(String lstNm) {
+		this.lstNm = lstNm;
 	}
 
 	public String getEmail() {
@@ -93,7 +93,7 @@ public class UserDto {
 
 	@Override
 	public String toString() {
-		return "User [id=" + id + ", username=" + username + ", password=" + password + ", firstName=" + firstName
-				+ ", lastName=" + lastName + ", email=" + email + "]";
+		return "User [id=" + id + ", usrNm=" + usrNm + ", pwd=" + pwd + ", frstNm=" + frstNm + ", lstNm=" + lstNm
+				+ ", email=" + email + "]";
 	}
 }

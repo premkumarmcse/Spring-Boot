@@ -7,33 +7,29 @@ import org.junit.jupiter.api.Test;
 
 class UserRoleTest {
 
-	UserRole userRole = new UserRole();
+	UserRole usrRole = new UserRole();
 
 	@Test
 	public void testUserRoleInstanceInitialized() {
-		assertNotNull(userRole);
+		assertNotNull(usrRole);
 	}
 
 	@Test
 	public void testUserRoleFieldsNotEmpty() {
-		userRole.setId(1);
-//		userRole.setUserId(1);
-		userRole.setRoleName("TEST");
+		usrRole.setId(1);
+		usrRole.setRoleNm("TEST");
 
-		assertNotEquals("", userRole.getId());
-//		assertNotEquals("", userRole.getUserId());
-		assertNotEquals("", userRole.getRoleName());
+		assertNotEquals("", usrRole.getId());
+		assertNotEquals("", usrRole.getRoleNm());
 	}
 
 	@Test
 	public void testUserRoleFieldsNotNull() {
-		userRole.setId(1);
-//		userRole.setUserId(1);
-		userRole.setRoleName("TEST");
+		usrRole.setId(1);
+		usrRole.setRoleNm("TEST");
 
-		assertNotNull(userRole.getId());
-//		assertNotNull(userRole.getUserId());
-		assertNotNull(userRole.getRoleName());
+		assertNotNull(usrRole.getId());
+		assertNotNull(usrRole.getRoleNm());
 	}
 
 }

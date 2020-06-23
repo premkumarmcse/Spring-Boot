@@ -4,7 +4,7 @@ import com.demo.entity.Role;
 
 public class RoleDto {
 	private long id;
-	private String roleName;
+	private String roleNm;
 
 	public RoleDto() {
 
@@ -12,7 +12,7 @@ public class RoleDto {
 
 	public RoleDto(Role role) {
 		this.id = role.getId();
-		this.roleName = role.getRoleName();
+		this.roleNm = role.getRoleNm();
 	}
 
 	public long getId() {
@@ -23,17 +23,17 @@ public class RoleDto {
 		this.id = id;
 	}
 
-	public String getRoleName() {
-		return roleName;
+	public String getRoleNm() {
+		return roleNm;
 	}
 
-	public void setRoleName(String roleName) {
-		this.roleName = roleName;
+	public void setRoleNm(String roleNm) {
+		this.roleNm = roleNm;
 	}
 
 	@Override
 	public String toString() {
-		return "Role [id=" + id + ", roleName=" + roleName + "]";
+		return "Role [id=" + id + ", roleNm=" + roleNm + "]";
 	}
 
 }

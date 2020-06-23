@@ -21,10 +21,10 @@ public class Role {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 	@NotNull
-	private String roleName;
+	private String roleNm;
 	
 	@OneToMany(mappedBy = "role", cascade = { CascadeType.ALL }, orphanRemoval = true)
-	List<RoleResource> userRole = new ArrayList<RoleResource>();
+	List<RoleResource> usrRole = new ArrayList<RoleResource>();
 
 	public Role() {
 
@@ -32,7 +32,7 @@ public class Role {
 
 	public Role(RoleDto roleDto) {
 		this.id = roleDto.getId();
-		this.roleName = roleDto.getRoleName();
+		this.roleNm = roleDto.getRoleNm();
 	}
 
 	public long getId() {
@@ -43,17 +43,17 @@ public class Role {
 		this.id = id;
 	}
 
-	public String getRoleName() {
-		return roleName;
+	public String getRoleNm() {
+		return roleNm;
 	}
 
-	public void setRoleName(String roleName) {
-		this.roleName = roleName;
+	public void setRoleNm(String roleNm) {
+		this.roleNm = roleNm;
 	}
 
 	@Override
 	public String toString() {
-		return "Role [id=" + id + ", roleName=" + roleName + "]";
+		return "Role [id=" + id + ", roleNm=" + roleNm + "]";
 	}
 
 }

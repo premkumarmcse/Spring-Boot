@@ -28,11 +28,11 @@ public class MyUserDetailsService implements UserDetailsService {
 
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-		Optional<UserDto> user = userRepository.findByUsername(username);
+		Optional<UserDto> user = userRepository.findByUsrNm(username);
 		user.orElseThrow(() -> new UsernameNotFoundException("Not found : " + username));
-		UserRole userRole = userRoleRepo.findByUserId(user.get().getId());
+		UserRole userRole = userRoleRepo.findById(user.get().getId());
 //		Role role = rolesRepo.findById(userRole.getRoleName());
-		user.get().setRole(userRole.getRoleName());
+		user.get().setRole(userRole.getRoleNm());
 		return user.map(MyUserDetails::new).get();
 
 	}

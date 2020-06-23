@@ -7,45 +7,45 @@ import org.junit.Test;
 
 public class UserTest {
 
-	User user = new User();
+	User usr = new User();
 
 	@Test
 	public void testUserInstanceInitialized() {
-		assertNotNull(user);
+		assertNotNull(usr);
 	}
 
 	@Test
 	public void testUserFieldsNotEmpty() {
-		user.setId(1);
-		user.setUsername("pkm");
-		user.setPassword("pkm01");
-		user.setFirstName("Prem");
-		user.setLastName(null);
-		user.setEmail(null);
+		usr.setId(1);
+		usr.setUsrNm("pkm");
+		usr.setPwd("pkm01");
+		usr.setFrstNm("Prem");
+		usr.setLstNm(null);
+		usr.setEmail(null);
 
-		assertNotEquals("", user.getId());
-		assertNotEquals("", user.getUsername());
-		assertNotEquals("", user.getPassword());
-		assertNotEquals("", user.getFirstName());
-		assertNotEquals("", user.getLastName());
-		assertNotEquals("", user.getEmail());
+		assertNotEquals("", usr.getId());
+		assertNotEquals("", usr.getUsrNm());
+		assertNotEquals("", usr.getPwd());
+		assertNotEquals("", usr.getFrstNm());
+		assertNotEquals("", usr.getLstNm());
+		assertNotEquals("", usr.getEmail());
 	}
 
 	@Test
 	public void testUserFieldsNotNull() {
-		user.setId(1);
-		user.setUsername("pkm");
-		user.setPassword("pkm01");
-		user.setFirstName("Prem");
-		user.setLastName("M");
-		user.setEmail("abc@gmail.com");
+		usr.setId(1);
+		usr.setUsrNm("pkm");
+		usr.setPwd("pkm01");
+		usr.setFrstNm("Prem");
+		usr.setLstNm("M");
+		usr.setEmail("abc@gmail.com");
 
-		assertNotNull(user.getId());
-		assertNotNull(user.getUsername());
-		assertNotNull(user.getPassword());
-		assertNotNull(user.getFirstName());
-		assertNotNull(user.getLastName());
-		assertNotNull(user.getEmail());
+		assertNotNull(usr.getId());
+		assertNotNull(usr.getUsrNm());
+		assertNotNull(usr.getPwd());
+		assertNotNull(usr.getFrstNm());
+		assertNotNull(usr.getLstNm());
+		assertNotNull(usr.getEmail());
 	}
 
 }

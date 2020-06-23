@@ -18,19 +18,19 @@ public class UserRole {
 	private long id;
 
 	@NotNull
-	private String roleName;
+	private String roleNm;
 
 	@ManyToOne
 	@JoinColumn(name = "user_id", referencedColumnName = "id", foreignKey = @ForeignKey(name = "FK_USER_ID"))
-	User user;
+	User usr;
 
 	public UserRole() {
 
 	}
 
-	public UserRole(UserRoleDto userRoleDto) {
-		this.id = userRoleDto.getId();
-		this.roleName = userRoleDto.getRoleName();
+	public UserRole(UserRoleDto usrRoleDto) {
+		this.id = usrRoleDto.getId();
+		this.roleNm = usrRoleDto.getRoleNm();
 	}
 
 	public long getId() {
@@ -41,30 +41,24 @@ public class UserRole {
 		this.id = id;
 	}
 
-	/*
-	 * public long getUserId() { return userId; }
-	 * 
-	 * public void setUserId(long userId) { this.userId = userId; }
-	 */
-
-	public User getUser() {
-		return user;
+	public User getUsr() {
+		return usr;
 	}
 
-	public void setUser(User user) {
-		this.user = user;
+	public void setUsr(User usr) {
+		this.usr = usr;
 	}
 
-	public String getRoleName() {
-		return roleName;
+	public String getRoleNm() {
+		return roleNm;
 	}
 
-	public void setRoleName(String roleName) {
-		this.roleName = roleName;
+	public void setRoleNm(String roleNm) {
+		this.roleNm = roleNm;
 	}
 
 	@Override
 	public String toString() {
-		return "UserRole [id=" + id + ", roleName=" + roleName + ", user=" + user + "]";
+		return "UserRole [id=" + id + ", roleNm=" + roleNm + ", user=" + usr + "]";
 	}
 }

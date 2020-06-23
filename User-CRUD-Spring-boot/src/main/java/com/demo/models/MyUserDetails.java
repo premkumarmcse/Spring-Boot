@@ -14,39 +14,39 @@ import com.demo.Dto.UserDto;
 @SuppressWarnings("serial")
 public class MyUserDetails implements UserDetails {
 
-	private String username;
-	private String password;
-	private boolean active;
-	private List<GrantedAuthority> authorities;
+	private String usrNm;
+	private String pwd;
+	private boolean actv;
+	private List<GrantedAuthority> Authrty;
 
 	public MyUserDetails() {
 
 	}
 
 	public MyUserDetails(UserDto userDto) {
-		this.username = userDto.getUsername();
-		this.password = userDto.getPassword();
-		this.active = true;
-		this.authorities = Arrays.stream(userDto.getRole().toString().split(",")).map(SimpleGrantedAuthority::new)
+		this.usrNm = userDto.getUsrNm();
+		this.pwd = userDto.getPwd();
+		this.actv = true;
+		this.Authrty = Arrays.stream(userDto.getRole().toString().split(",")).map(SimpleGrantedAuthority::new)
 				.collect(Collectors.toList());
 	}
 
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
 
-		return authorities;
+		return Authrty;
 	}
 
 	@Override
 	public String getPassword() {
 
-		return password;
+		return pwd;
 	}
 
 	@Override
 	public String getUsername() {
 
-		return username;
+		return usrNm;
 	}
 
 	@Override
@@ -70,7 +70,7 @@ public class MyUserDetails implements UserDetails {
 	@Override
 	public boolean isEnabled() {
 
-		return active;
+		return actv;
 	}
 
 }

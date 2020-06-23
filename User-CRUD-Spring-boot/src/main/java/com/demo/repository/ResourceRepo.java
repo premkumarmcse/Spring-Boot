@@ -10,7 +10,7 @@ import com.demo.entity.Resource;
 
 public interface ResourceRepo extends JpaRepository<Resource, Long> {
 
-	@Query("select u from Resource u where u.resourceName in (:resourceName)")
-	List<Resource> getListOfResourceUrl(@Param("resourceName") List<String> resourceName);
+	@Query("select u from Resource u where u.rsrcNm in (:rsrcNm)")
+	List<Resource> getListOfResourceUrl(@Param("rsrcNm") List<String> rsrcNm);
 
 }

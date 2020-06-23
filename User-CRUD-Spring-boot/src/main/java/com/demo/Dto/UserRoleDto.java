@@ -5,8 +5,8 @@ import com.demo.entity.UserRole;
 
 public class UserRoleDto {
 	private long id;
-	private String roleName;
-	User user;
+	private String roleNm;
+	User usr;
 
 	public UserRoleDto() {
 
@@ -14,7 +14,7 @@ public class UserRoleDto {
 
 	public UserRoleDto(UserRole userRole) {
 		this.id = userRole.getId();
-		this.roleName = userRole.getRoleName();
+		this.roleNm = userRole.getRoleNm();
 	}
 
 	public long getId() {
@@ -25,16 +25,16 @@ public class UserRoleDto {
 		this.id = id;
 	}
 
-	public String getRoleName() {
-		return roleName;
+	public String getRoleNm() {
+		return roleNm;
 	}
 
-	public void setRoleName(String roleName) {
-		this.roleName = roleName;
+	public void setRoleNm(String roleNm) {
+		this.roleNm = roleNm;
 	}
 
 	@Override
 	public String toString() {
-		return "UserRole [id=" + id + ", roleName=" + roleName + ", user=" + user + "]";
+		return "UserRole [id=" + id + ", roleNm=" + roleNm + ", user=" + usr + "]";
 	}
 }

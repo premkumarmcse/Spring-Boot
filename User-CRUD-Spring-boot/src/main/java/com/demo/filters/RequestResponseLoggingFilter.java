@@ -80,12 +80,12 @@ public class RequestResponseLoggingFilter implements Filter {
 		}
 
 		if (!SecurityContextHolder.getContext().getAuthentication().getPrincipal().equals("anonymousUser")) {
-			Optional<UserDto> user = userRepository.findByUsername(currentPrincipalName);
+			Optional<UserDto> user = userRepository.findByUsrNm(currentPrincipalName);
 			user.orElseThrow(() -> new UsernameNotFoundException("Not found : " + currentPrincipalName));
-			UserRole userRole = userRoleRepo.findByUserId(user.get().getId());
+			UserRole userRole = userRoleRepo.findById(user.get().getId());
 			List<String> roleResource = new ArrayList<String>();
 
-			roleResource = rolesResourceRepo.getListOfRoleResource(userRole.getRoleName(), true);
+			roleResource = rolesResourceRepo.getListOfRoleResource(userRole.getRoleNm(), true);
 
 			List<Resource> resourceList = new ArrayList<Resource>();
 			resourceList = resourceRepo.getListOfResourceUrl(roleResource);
@@ -102,7 +102,7 @@ public class RequestResponseLoggingFilter implements Filter {
 						break;
 					}
 				}
-				if (!resourceList.get(i).getAction().equals(req.getMethod())
+				if (!resourceList.get(i).getActn().equals(req.getMethod())
 						|| !resourceList.get(i).getUrl().equals(req.getRequestURI())) {
 					if (i == resourceList.size() - 1) {
 						((HttpServletResponse) response).sendError(HttpStatus.BAD_REQUEST.value(), "Invalid path");

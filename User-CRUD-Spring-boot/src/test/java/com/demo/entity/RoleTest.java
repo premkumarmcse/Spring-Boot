@@ -17,18 +17,18 @@ class RoleTest {
 	@Test
 	public void testRoleFieldsNotEmpty() {
 		role.setId(1);
-		role.setRoleName("ADMIN");
+		role.setRoleNm("ADMIN");
 
 		assertNotEquals("", role.getId());
-		assertNotEquals("", role.getRoleName());
+		assertNotEquals("", role.getRoleNm());
 	}
 
 	@Test
 	public void testRoleFieldsNotNull() {
 		role.setId(1);
-		role.setRoleName("ADMIN");
+		role.setRoleNm("ADMIN");
 
 		assertNotNull(role.getId());
-		assertNotNull(role.getRoleName());
+		assertNotNull(role.getRoleNm());
 	}
 }

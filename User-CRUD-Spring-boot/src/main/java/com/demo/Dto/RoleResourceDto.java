@@ -5,20 +5,18 @@ import com.demo.entity.RoleResource;
 
 public class RoleResourceDto {
 	private long id;
-//	private String roleName;
-	private String resourceName;
-	private boolean active;
+	private String rsrcNm;
+	private boolean actv;
 	Role role;
 
 	public RoleResourceDto() {
 
 	}
 
-	public RoleResourceDto(RoleResource roleResource) {
-		this.id = roleResource.getId();
-//		this.roleName = roleResource.getRoleName();
-		this.resourceName = roleResource.getResourceName();
-		this.active = roleResource.isActive();
+	public RoleResourceDto(RoleResource roleRsrc) {
+		this.id = roleRsrc.getId();
+		this.rsrcNm = roleRsrc.getRsrcNm();
+		this.actv = roleRsrc.isActv();
 	}
 
 	public long getId() {
@@ -29,26 +27,20 @@ public class RoleResourceDto {
 		this.id = id;
 	}
 
-	/*
-	 * public String getRoleName() { return roleName; }
-	 * 
-	 * public void setRoleName(String roleName) { this.roleName = roleName; }
-	 */
-
-	public String getResourceName() {
-		return resourceName;
+	public String getRsrcNm() {
+		return rsrcNm;
 	}
 
-	public void setResourceName(String resourceName) {
-		this.resourceName = resourceName;
+	public void setRsrcNm(String rsrcNm) {
+		this.rsrcNm = rsrcNm;
 	}
 
-	public boolean isActive() {
-		return active;
+	public boolean isActv() {
+		return actv;
 	}
 
-	public void setActive(boolean active) {
-		this.active = active;
+	public void setActv(boolean actv) {
+		this.actv = actv;
 	}
 
 	public Role getRole() {
@@ -61,7 +53,7 @@ public class RoleResourceDto {
 
 	@Override
 	public String toString() {
-		return "RoleResourceDto [id=" + id + ", resourceName=" + resourceName + ", active=" + active + ", role=" + role
+		return "RoleResourceDto [id=" + id + ", rsrcNm=" + rsrcNm + ", actv=" + actv + ", role=" + role
 				+ "]";
 	}
 }

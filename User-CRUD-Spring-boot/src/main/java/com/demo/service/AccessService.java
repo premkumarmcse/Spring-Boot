@@ -55,11 +55,11 @@ public class AccessService {
 			throws Exception {
 		try {
 			authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(
-					authenticationRequest.getUsername(), authenticationRequest.getPassword()));
+					authenticationRequest.getUsrNm(), authenticationRequest.getPwd()));
 		} catch (BadCredentialsException e) {
 			throw new Exception("Incorrect username or password", e);
 		}
-		final UserDetails userDetails = userDetailsService.loadUserByUsername(authenticationRequest.getUsername());
+		final UserDetails userDetails = userDetailsService.loadUserByUsername(authenticationRequest.getUsrNm());
 		final String jwt = jwtUtil.generateToken(userDetails);
 		return ResponseEntity.ok(new AuthenticationResponse(jwt));
 
@@ -81,7 +81,7 @@ public class AccessService {
 	public String assignResourceToRole(RoleResourceDto roleResourceDto) {
 		try {
 			RoleResource roleResource = new RoleResource(roleResourceDto);
-			roleResource.setActive(true);
+			roleResource.setActv(true);
 			rolesResourceRepo.save(roleResource);
 		}catch (DataIntegrityViolationException divEX) {
 			if(divEX.getMostSpecificCause().toString().toUpperCase().contains("UK_ROLEID_RESOURCEID")){

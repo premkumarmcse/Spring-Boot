@@ -21,16 +21,16 @@ public class User {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 	@NotNull
-	private String username;
+	private String usrNm;
 	@NotNull
-	private String password;
+	private String pwd;
 	@NotNull
-	private String firstName;
-	private String lastName;
+	private String frstNm;
+	private String lstNm;
 	private String email;
 
-	@OneToMany(mappedBy = "user", cascade = { CascadeType.ALL }, orphanRemoval = true)
-	List<UserRole> userRole = new ArrayList<UserRole>();
+	@OneToMany(mappedBy = "usr", cascade = { CascadeType.ALL }, orphanRemoval = true)
+	List<UserRole> usrRole = new ArrayList<UserRole>();
 
 	public User() {
 
@@ -38,10 +38,10 @@ public class User {
 
 	public User(UserDto userDto) {
 		this.id = userDto.getId();
-		this.username = userDto.getUsername();
-		this.password = userDto.getPassword();
-		this.firstName = userDto.getFirstName();
-		this.lastName = userDto.getLastName();
+		this.usrNm = userDto.getUsrNm();
+		this.pwd = userDto.getPwd();
+		this.frstNm = userDto.getFrstNm();
+		this.lstNm = userDto.getLstNm();
 		this.email = userDto.getEmail();
 	}
 
@@ -53,36 +53,36 @@ public class User {
 		this.id = id;
 	}
 
-	public String getUsername() {
-		return username;
+	public String getUsrNm() {
+		return usrNm;
 	}
 
-	public void setUsername(String username) {
-		this.username = username;
+	public void setUsrNm(String usrNm) {
+		this.usrNm = usrNm;
 	}
 
-	public String getPassword() {
-		return password;
+	public String getPwd() {
+		return pwd;
 	}
 
-	public void setPassword(String password) {
-		this.password = password;
+	public void setPwd(String pwd) {
+		this.pwd = pwd;
 	}
 
-	public String getFirstName() {
-		return firstName;
+	public String getFrstNm() {
+		return frstNm;
 	}
 
-	public void setFirstName(String firstName) {
-		this.firstName = firstName;
+	public void setFrstNm(String frstNm) {
+		this.frstNm = frstNm;
 	}
 
-	public String getLastName() {
-		return lastName;
+	public String getLstNm() {
+		return lstNm;
 	}
 
-	public void setLastName(String lastName) {
-		this.lastName = lastName;
+	public void setLstNm(String lstNm) {
+		this.lstNm = lstNm;
 	}
 
 	public String getEmail() {
@@ -93,18 +93,18 @@ public class User {
 		this.email = email;
 	}
 
-	public List<UserRole> getUserRole() {
-		return userRole;
+	public List<UserRole> getUsrRole() {
+		return usrRole;
 	}
 
-	public void setUserRole(List<UserRole> userRole) {
-		this.userRole = userRole;
+	public void setUsrRole(List<UserRole> usrRole) {
+		this.usrRole = usrRole;
 	}
 
 	@Override
 	public String toString() {
-		return "User [id=" + id + ", username=" + username + ", password=" + password + ", firstName=" + firstName
-				+ ", lastName=" + lastName + ", email=" + email + "]";
+		return "User [id=" + id + ", usrNm=" + usrNm + ", pwd=" + pwd + ", frstNm=" + frstNm + ", lstNm=" + lstNm
+				+ ", email=" + email + "]";
 	}
 
 }
